@@ -20,3 +20,4 @@ Ken: "I want all of the daily actions and statuses saved and logged into the rep
 
 Same day (fifth pass): publishing without a terminal. Ken: someone who knows nothing about GitHub must still be able to commit updates back. Skill-update prompt item 12: an operator-handle line in the skill, and a Friday and Sunday publishing step that, through the GitHub connector, forks once, appends the week's rows to `data/<handle>/` on a branch of the fork, files learning proposals, and opens one pull request (amendment line now item 13). INSTALL step 0.5 rewritten as the no-terminal setup (free account, connector, "fork metacakehq/double-project"); CONTRIBUTING gains "With the GitHub connector" as the default, the terminal path as the alternative, and "Without GitHub" as a maintainer-run fallback; MAINTENANCE step 9 covers both.
 
+Same day: maintainer contact for the no-GitHub fallback set to ken@metamorphicmedia.com (Ken).

@@ -10,7 +10,7 @@ sensitive: no
 
 This repo takes two kinds of contribution from operators: their data (every run and every closed trade, see "Your data" below) and learnings. A learning is a pattern your installed copy found in its own closed trades, with the mechanism named and a specific change proposed. Rule edits, prompt edits and new features go through the maintainer; open an issue to discuss them.
 
-Maintainer: Ken Ott (`metacakehq`). The maintainer accepts, declines or trials learnings and folds accepted ones into `rules/RULEBOOK.md` and the next skill update.
+Maintainer: Ken Ott (`metacakehq`, ken@metamorphicmedia.com). The maintainer accepts, declines or trials learnings and folds accepted ones into `rules/RULEBOOK.md` and the next skill update.
 
 ## The automatic part
 Once the skill in `skill/double-project-trading/SKILL.md` is installed per `INSTALL.md`, your Sunday scout already does the work. When its pattern read (rules/LEARNING-LOOP.md §2) finds something that clears the proposal threshold (§3), it prints a `LEARNING PROPOSAL (for the shared repo)` block at the end of its report, in the portable form of §6: counts, percent of V and ATR multiples, no account identifiers, no dollar figures. If it finds a pattern that does not yet clear the threshold, it prints the same block marked `status at source: idea`.
@@ -38,7 +38,7 @@ python3 scripts/publish_data.py publish --handle <your handle> --source <path to
 merges them into `data/<handle>/status.csv` and `trades.csv`, rebuilds `data/SCOREBOARD.md` and opens the pull request. The merge is idempotent. Schema and rules: `data/README.md`.
 
 ## Without GitHub (fallback)
-If you will not have a GitHub account, publishing is still part of running the system; it just goes through the maintainer. Each week, send the new files from your `repo-records/` folder (and any LEARNING PROPOSAL blocks your scout printed) to the maintainer by the contact on the `metacakehq` GitHub profile, with your chosen handle in the message. The maintainer runs `scripts/publish_data.py publish --handle <your handle>` and `scripts/learnings.py propose` on your behalf and credits your handle. Ask before you install this way; it puts recurring work on one person and the maintainer may say no.
+If you will not have a GitHub account, publishing is still part of running the system; it just goes through the maintainer. Each week, send the new files from your `repo-records/` folder (and any LEARNING PROPOSAL blocks your scout printed) to the maintainer at ken@metamorphicmedia.com, with your chosen handle in the message. The maintainer runs `scripts/publish_data.py publish --handle <your handle>` and `scripts/learnings.py propose` on your behalf and credits your handle. Ask before you install this way; it puts recurring work on one person and the maintainer may say no.
 
 ## What the review checks
 - Threshold: 4 or more trades (3 for bear funds), or honestly marked `idea`.
