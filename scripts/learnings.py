@@ -6,7 +6,7 @@
   python3 scripts/learnings.py index
 
 propose reads the block the Sunday scout printed (a file, or stdin with "-"), checks the required
-fields and the privacy rule (no 9-digit numbers, no dollar figures), writes learnings/proposed/<id>.md,
+fields and the privacy rule (no 9-digit numbers, which is what account identifiers look like), writes learnings/proposed/<id>.md,
 rebuilds learnings/INDEX.md and, with --pr, branches, commits, pushes and opens the pull request with gh.
 review moves a learning between folders and records the maintainer's decision. index rebuilds INDEX.md.
 No network, no brokerage, no Dropbox: this script only touches this repo.
@@ -53,8 +53,7 @@ def parse_block(text):
 def privacy_check(text, allow_dollars):
     if ACCOUNT_RE.search(text):
         die("a 9-digit number is in the block; that is what account numbers look like. Remove it.")
-    if DOLLAR_RE.search(text) and not allow_dollars:
-        die("a dollar figure is in the block. Use percent of V and ATR multiples; --allow-dollars only for public price levels.")
+    # Dollar figures are allowed since 2026-11-24 (Ken): amounts, wins and losses are community data.
 
 
 def slugify(s, n=40):
@@ -178,7 +177,7 @@ def open_pr(lid, title, rel):
         print("push failed. If you do not have write access, run `gh repo fork --remote` once, then `git push -u fork " + branch + "` and `gh pr create --fill`.")
         return
     body = (f"Learning proposal from an installed copy's Sunday scout. File: `{rel}`.\n\n"
-            "Checklist: threshold met or marked idea; no account identifiers; no dollar figures; one change, one area.\n")
+            "Checklist: threshold met or marked idea; no account identifiers; one change, one area.\n")
     run(["gh", "pr", "create", "--base", "main", "--title", f"Learning: {title}", "--body", body], check=False)
 
 

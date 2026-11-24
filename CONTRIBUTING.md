@@ -8,7 +8,7 @@ sensitive: no
 ---
 # Contributing a learning
 
-This repo takes one kind of contribution from operators: a learning, which is a pattern your installed copy found in its own closed trades, with the mechanism named and a specific change proposed. Rule edits, prompt edits and new features go through the maintainer; open an issue to discuss them.
+This repo takes two kinds of contribution from operators: their data (every run and every closed trade, see "Your data" below) and learnings. A learning is a pattern your installed copy found in its own closed trades, with the mechanism named and a specific change proposed. Rule edits, prompt edits and new features go through the maintainer; open an issue to discuss them.
 
 Maintainer: Ken Ott (`metacakehq`). The maintainer accepts, declines or trials learnings and folds accepted ones into `rules/RULEBOOK.md` and the next skill update.
 
@@ -21,17 +21,24 @@ Once the skill in `skill/double-project-trading/SKILL.md` is installed per `INST
    ```bash
    python3 scripts/learnings.py propose block.txt --pr
    ```
-   The script checks the required fields, refuses any 9-digit number and any `$` amount, writes `learnings/proposed/<date>-<your handle>-<slug>.md`, rebuilds `learnings/INDEX.md`, creates a branch `learning/<id>`, commits, pushes and opens the pull request with `gh`. Without `--pr` it only writes the file; commit and open the pull request by hand.
+   The script checks the required fields, refuses any 9-digit number, writes `learnings/proposed/<date>-<your handle>-<slug>.md`, rebuilds `learnings/INDEX.md`, creates a branch `learning/<id>`, commits, pushes and opens the pull request with `gh`. Without `--pr` it only writes the file; commit and open the pull request by hand.
 3. If you do not have write access, fork once with `gh repo fork --remote`, then push the branch to your fork and run `gh pr create`. The script prints these steps if its push is refused.
 4. No git on your machine: open an issue with the "Learning proposal" template and paste the block. The maintainer files it for you.
 
 Your handle goes into the file as `author`. Use your GitHub login or any stable name; it is how repeat lessons from the same account are told apart from the same lesson seen by many accounts, which is the signal this folder exists to find.
 
+## Your data
+Running this system means publishing its results (Ken, 2026-11-24). Once the skill carries the repo-record step, your close report writes dated CSV files to a `repo-records/` folder next to your state files. Weekly, or whenever:
+```bash
+python3 scripts/publish_data.py publish --handle <your handle> --source <path to repo-records> --pr
+```
+merges them into `data/<handle>/status.csv` and `trades.csv`, rebuilds `data/SCOREBOARD.md` and opens the pull request. The merge is idempotent. Schema and rules: `data/README.md`. If your claude.ai has the GitHub connector, the close report can commit the rows to your fork directly; the merge and pull request are the same.
+
 ## What the review checks
 - Threshold: 4 or more trades (3 for bear funds), or honestly marked `idea`.
 - Mechanism named: which rule produced the outcome.
 - One specific change, one area, with an expected cost and a way to judge it.
-- Privacy: no account identifiers, no dollar figures, nothing that identifies a person. Tickers and dates are fine.
+- Privacy: no account identifiers, nothing that identifies a person. Dollar figures, tickers, prices and dates are community data.
 - Not already covered: the maintainer checks `learnings/INDEX.md` and `rules/RULEBOOK.md`. A duplicate is still useful; it is merged as a second author on the existing learning's evidence rather than declined.
 
 Review happens on the pull request. The maintainer records the decision with
@@ -44,4 +51,4 @@ python3 scripts/learnings.py review <id> --accept --note "why" --trades 7
 The maintainer adds the rule to `rules/RULEBOOK.md` with a `[community]` tag and the learning id, and to the next `runs/SKILL-UPDATE-PROMPT-<date>.md`. Each operator decides whether to paste that prompt into their own run session; this repo recommends rules, it never pushes them into anyone's account. The changelog names every accepted learning and its author.
 
 ## What never goes in a pull request
-Account numbers, balances, order IDs, per-trade dollar results, state files, status files, screenshots of the brokerage. The sync script and the `.gitignore` keep Ken's own figures out; the same standard applies to everyone.
+Account identifiers, order IDs, credentials, raw state files, screenshots of the brokerage. Balances and per-trade results do go in, as rows in `data/<handle>/`, never as pasted statements.

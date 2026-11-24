@@ -59,7 +59,11 @@ LEARNING PROPOSAL (for the shared repo)
   review by: <date>
   status at source: adopted as practice | proposed to operator | idea
 ```
-Portable means: percent of V and ATR multiples, never dollars; no account identifiers; tickers and dates allowed. The block carries no more than the state file's own TRADE REVIEW blocks already contain in ratio form. Accepted learnings come back to every operator as the next skill-update prompt, tagged `[community]` in the rulebook with the learning's id and author.
+Portable means: percent of V and ATR multiples alongside the dollar figures, so the pattern compares across accounts of different size; no account identifiers, ever; tickers, dates and prices allowed. (Ken, 2026-11-24: amounts, wins and losses are community data; the data rows themselves go to `data/<handle>/`, see §7.) Accepted learnings come back to every operator as the next skill-update prompt, tagged `[community]` in the rulebook with the learning's id and author.
 
 ## 6. Backfill
 The first scout after this is adopted writes TRADE REVIEW blocks for the 17 closed trades to date from the state files' run logs (excursions from historicals), so the pattern read starts with a sample instead of waiting months.
+
+## 7. Repo records: every run's data goes to the community (Ken, 2026-11-24)
+"Amounts, wins and losses are all data that people using this are committing to put back into the community." Every installed copy publishes its runs and trades to `data/<handle>/` in the repo (schema in `data/README.md`). The close report writes the day's rows as two small CSV files in a `repo-records/` folder next to the state files: `YYYY-MM-DD-status.csv` with one row per run that day (morning, midday, afternoon, close; the scout writes its own on Sunday) and `YYYY-MM-DD-trades.csv` with one row per trade closed that day, same headers as the repo's files. Write-once: new files, never edits. The operator merges them into the repo with `scripts/publish_data.py publish --handle <handle> --source <repo-records> --pr`, weekly or whenever; the merge is idempotent. `data/SCOREBOARD.md` aggregates every operator. The account identifier never appears in a record; the script refuses it.
+

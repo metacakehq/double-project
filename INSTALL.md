@@ -19,7 +19,7 @@ Everything below is done once, before the skill or the tasks exist.
 2. **Robinhood connector in claude.ai.** In claude.ai, Settings, Connectors, add the Robinhood connector and sign in with the Robinhood login that owns the agentic account. Then, in any chat, ask Claude to run `get_accounts` and note the identifier of the agentic account exactly as it is returned. That string replaces `<ACCOUNT>` everywhere. Confirm it is the agentic cash account and not another one on the login; the skill names one account and trades only in it.
 3. **Storage connector.** Add the Dropbox connector (or another file store; the two prompts assume Dropbox). Create two folders: one for state files (positions and balances, sensitive) and one for status files (no figures). In a chat, ask Claude to list the state folder through the connector and note the path it uses to reach it. Dropbox team accounts expose a namespace path of the form `ns:<number>//...` and the team root is not writable, which is why the prompts carry both the namespace path and the display path. Replace both with yours.
 4. **Scheduled tasks.** Confirm your claude.ai plan offers scheduled tasks and that a scheduled task can be given connectors. The runs are two tasks; a plan without them cannot run the system unattended.
-5. **GitHub.** Access to this repo (ask the maintainer), plus `git` and the `gh` CLI if you want the two-minute learning flow in `CONTRIBUTING.md`. Not needed to trade.
+5. **GitHub.** Access to this repo (ask the maintainer), plus `git` and the `gh` CLI for publishing your data and learnings (`CONTRIBUTING.md`). Publishing is part of running the system, so set these up.
 
 ## 1. The skill
 1. Take `skill/double-project-trading/SKILL.md`. Replace every `<ACCOUNT>` with the identifier from step 0.2.
@@ -40,8 +40,8 @@ Expect it to sit in cash unless a setup qualifies; cash is the position when not
 ## 4. First week
 Read every report. The first scout will find no closed trades and backfill nothing; that is correct. If a report ever implies the goal is near, that is a reporting failure and the skill's honesty rule has been dropped somewhere. If the daily chain misses a wake-up, `ops/OPERATING-NOTES.md` has the send_later notes (absolute UTC times, never a computed delay).
 
-## 5. Learnings
-Nothing to set up. Once the skill carries the learning loop, your Sunday scout prints a `LEARNING PROPOSAL (for the shared repo)` block whenever your trades show a pattern that clears the threshold. `CONTRIBUTING.md` says how to push it back here in two minutes, and what the review checks. Accepted learnings reach you as the next skill-update prompt; whether to apply them to your copy is your call.
+## 5. Data and learnings
+Running the system means publishing its results to the community: every run's status row and every closed trade, with amounts, under your handle in `data/<handle>/` (Ken, 2026-11-24). The repo is public. If you are not willing to publish your results, do not install this system. Nothing to set up for it: once the skill carries the repo-record step your close report writes the rows to a `repo-records/` folder next to your state files and `scripts/publish_data.py publish --pr` pushes them here (`CONTRIBUTING.md`, "Your data"). Likewise, once the skill carries the learning loop, your Sunday scout prints a `LEARNING PROPOSAL (for the shared repo)` block whenever your trades show a pattern that clears the threshold. `CONTRIBUTING.md` says how to push it back here in two minutes, and what the review checks. Accepted learnings reach you as the next skill-update prompt; whether to apply them to your copy is your call.
 
 ## Checklist
 - [ ] Agentic cash account open, funded, deposit settled; options level set only if long calls will be used
@@ -52,7 +52,7 @@ Nothing to set up. Once the skill carries the learning loop, your Sunday scout p
 - [ ] Rulebook read; skill-update prompt applied or rules edited in
 - [ ] Two tasks created with paths, account and operator name replaced; connectors attached; strongest model
 - [ ] First run watched: V, HWM, F correct; "Always allow" granted on order, storage and scheduling tools; state and status files written; next wake-up scheduled
-- [ ] Repo access and `gh` set up, if you will contribute learnings
+- [ ] Willing to publish your runs and trades under your handle; `git` and `gh` set up to push them
 
 ## What stays with the original operator
 `scripts/sync_from_dropbox.py`, the `history/` generated files and the status block in `README.md` read Ken's Dropbox and describe his account. They are not needed to run the system. If you keep your own fork current from your own store, write your own sync for your paths and keep your figures out of commits the same way (`.gitignore`, redaction).

@@ -1,0 +1,18 @@
+operator,trade_id,entry_date,exit_date,ticker,vehicle,side,shares,entry_price,exit_price,pnl_usd,pnl_pct,hold_sessions,setup,regime_entry,stop_atr,risk_pct_v,exit_type,notes
+ken-hq,2026-08-03-unknown-1,,2026-08-03,,long,long,,,,10.35,,,,,,,other,first closed win; name not in the record
+ken-hq,2026-08-06-unknown-2,,2026-08-06,,long,long,,,,26.3,,,,,,,other,name not in the record
+ken-hq,2026-09-xx-ELF,,2026-09-08,ELF,long,long,5,96.0,103.3,36.42,7.59,,momentum_scan,,,,raised_stop,largest win of the long book; exit price approximate
+ken-hq,2026-07-27-BAC,2026-07-27,2026-09-11,BAC,long,long,8,62.45,62.6801,1.84,0.37,33,other,,,,stall,the trade that created the stall-exit rule
+ken-hq,2026-09-xx-CVX,,2026-09-21,CVX,long,long,,,,-25.39,,,momentum_scan,,,,stop_intraday,energy; rolling-over crude
+ken-hq,2026-09-22-DINO,2026-09-22,2026-09-23,DINO,long,long,,,,-17.84,,1,momentum_scan,,,,stop_intraday,bought the day after an outside reversal; source of the reversal-bar deferral
+ken-hq,2026-09-09-TEAM,2026-09-09,2026-09-28,TEAM,long,long,2,,,-1.56,,13,pead,,,,stop_gap,stopped 0.43% below entry on a 6.4% gap-down
+ken-hq,2026-09-28-FTNT,2026-09-28,2026-10-14,FTNT,long,long,2,176.2743,186.15,19.75,5.6,12,momentum_scan,NORMAL,,,stop_gap,stop filled at the open; had been raised to 189.60
+ken-hq,2026-09-29-PLTR,2026-09-29,2026-10-15,PLTR,long,long,2,186.1099,196.44,20.66,5.55,12,momentum_scan,NORMAL,,,stop_gap,stop 197.90
+ken-hq,2026-10-19-DOCU,2026-10-19,2026-10-27,DOCU,long,long,6,74.92,82.95,47.67,10.6,6,momentum_scan,NORMAL,,,raised_stop,best long; 16-minute unprotected window at entry raised Flag D; exit price approximate
+ken-hq,2026-10-29-KR,2026-10-29,2026-11-06,KR,long,long,7,65.43,66.8,9.59,2.09,6,momentum_scan,DEFENSE,,,stop_gap,P3 exclusion applied
+ken-hq,2026-10-30-EBAY,2026-10-30,2026-11-09,EBAY,long,long,4,121.48,120.6514,-3.31,-0.68,6,momentum_scan,DEFENSE,0.21,,stop_intraday,entry-adjacent stop shaken out intraday
+ken-hq,2026-11-09-KR,2026-11-09,2026-11-18,KR,long,long,4,67.62,69.15,6.12,2.26,7,momentum_scan,DEFENSE,,,raised_stop,re-entry after the 11/06 stop-out
+ken-hq,2026-11-11-EBAY,2026-11-11,2026-11-17,EBAY,long,long,2,122.7341,117.844,-9.78,-3.98,4,momentum_scan,DEFENSE,1.1,,stop_intraday,second ecommerce loss; Flag A live through 12/02
+ken-hq,2026-11-13-SOXS,2026-11-13,2026-11-16,SOXS,bear_fund,long,5,53.39,58.3301,24.7,9.25,1,bear_breakdown,DEFENSE,,,profit_zone,first bear-fund trade
+ken-hq,2026-11-16-WEC,2026-11-16,2026-11-18,WEC,long,long,2,117.44,115.0,-4.88,-2.08,2,momentum_scan,DEFENSE,,,stop_gap,tight initial stop; P3 exclusion
+ken-hq,2026-11-19-SOXS,2026-11-19,2026-11-19,SOXS,bear_fund,long,5,50.93,60.955,50.13,19.69,0,bear_pullback,DEFENSE,,,profit_zone,same-day exit; new realized peak
