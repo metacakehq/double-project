@@ -12,6 +12,8 @@ The Double Project is Ken Ott's experiment in letting an AI run a small brokerag
 
 This repo is the system, written down so it can be read, shared, audited and updated. It is not the live state. Live state (positions, balances, watchlist) lives in Dropbox and is marked sensitive there; this repo carries the rules, the architecture, the decision history, the operating lessons and an assessment.
 
+GitHub: `metacakehq/double-project` (private). The git folder is in Dropbox, so commit from one Mac at a time and push after every commit.
+
 ## Status at the last sync (2026-11-24)
 - Running since 2026-07-24. 17 closed trades, 11 wins and 6 losses, cumulative realized +$190.77 (+19.1% of the start). Account in cash on 2026-11-23 at $1,194.87. Regime DEFENSE.
 - Honest pace: the goal needs another +67%. At the realized pace since July that is more than a year away. November was faster because bear funds worked in a trending down tape. Nobody in this system is allowed to imply the target is near.

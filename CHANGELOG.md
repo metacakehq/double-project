@@ -5,3 +5,5 @@ First codification. Sources: the live skill as synced to this Mac (30,648 bytes,
 
 ## 2026-11-24 (second pass, Ken's review)
 Trade-figure files (`history/TRADE-LEDGER.md`, `history/RUN-LOG.md`, `history/OPEN-ITEMS.generated.md`) gitignored and kept local only; the root commit was rewritten before any push so they never entered history. Added `rules/LEARNING-LOOP.md` (trade reviews, weekly pattern read, proposal rule, scoreboard, backfill) and a pointer in the rulebook. Added `runs/SKILL-UPDATE-PROMPT-2026-11-24.md`, the prompt that brings the skill level with the state file, fixes the scheduling section, adds the permission-block rule and the learning loop. Permission-block policy written into SYSTEM.md and the operating notes.
+
+Pushed to GitHub `metacakehq/double-project` (private) on Ken's yes, 2026-11-24.
