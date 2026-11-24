@@ -19,21 +19,21 @@ Everything below is done once, before the skill or the tasks exist.
 2. **Robinhood connector in claude.ai.** In claude.ai, Settings, Connectors, add the Robinhood connector and sign in with the Robinhood login that owns the agentic account. Then, in any chat, ask Claude to run `get_accounts` and note the identifier of the agentic account exactly as it is returned. That string replaces `<ACCOUNT>` everywhere. Confirm it is the agentic cash account and not another one on the login; the skill names one account and trades only in it.
 3. **Storage connector.** Add the Dropbox connector (or another file store; the two prompts assume Dropbox). Create two folders: one for state files (positions and balances, sensitive) and one for status files (no figures). In a chat, ask Claude to list the state folder through the connector and note the path it uses to reach it. Dropbox team accounts expose a namespace path of the form `ns:<number>//...` and the team root is not writable, which is why the prompts carry both the namespace path and the display path. Replace both with yours.
 4. **Scheduled tasks.** Confirm your claude.ai plan offers scheduled tasks and that a scheduled task can be given connectors. The runs are two tasks; a plan without them cannot run the system unattended.
-5. **GitHub.** Access to this repo (ask the maintainer), plus `git` and the `gh` CLI for publishing your data and learnings (`CONTRIBUTING.md`). Publishing is part of running the system, so set these up.
+5. **GitHub, no terminal needed.** Publishing your results is part of running the system, and it works with nothing installed on your computer. Create a free account at github.com (your login becomes your operator handle). In claude.ai, Settings, Connectors, add the GitHub connector and sign in. Then, in a chat, tell Claude: "Fork metacakehq/double-project to my account." That is the whole setup; from then on your runs publish through the connector by themselves (`CONTRIBUTING.md`, "With the GitHub connector"). Attach the GitHub connector to both scheduled tasks in step 2. If you would rather not have a GitHub account at all, read `CONTRIBUTING.md` "Without GitHub" before you install; the fallback puts work on the maintainer, so ask first.
 
 ## 1. The skill
-1. Take `skill/double-project-trading/SKILL.md`. Replace every `<ACCOUNT>` with the identifier from step 0.2.
+1. Take `skill/double-project-trading/SKILL.md`. Replace every `<ACCOUNT>` with the identifier from step 0.2, and the operator handle `ken-hq` with your GitHub login.
 2. Read the "Campaign started" line and the control numbers: set your own start date, start value and goal. The floor F and the HWM formula derive from the start value, so change them together.
 3. Read `rules/RULEBOOK.md` in full. It is the complete current rule set, including rules the skill text may not yet carry (tags `[state]`, `[practice]`, `[trial]`). The latest `runs/SKILL-UPDATE-PROMPT-<date>.md` tells a session how to fold those into the skill; run it on your copy after installing, or edit the text in first.
 4. Create the skill in claude.ai (Settings, Skills, upload or paste), named `double-project-trading`.
 
 ## 2. The two scheduled tasks
-Create them from `runs/daily-run.md` (weekdays, your market-open hour in UTC; the prompt chains 12:45, 15:30 and 16:05 ET into the same session) and `runs/weekly-scout.md` (Sunday, no orders). In each prompt replace: the storage namespace and display paths from step 0.3, the account identifier, and the operator name. Keep everything else. Model: the strongest available; these runs decide trades. Attach the Robinhood and storage connectors to each task.
+Create them from `runs/daily-run.md` (weekdays, your market-open hour in UTC; the prompt chains 12:45, 15:30 and 16:05 ET into the same session) and `runs/weekly-scout.md` (Sunday, no orders). In each prompt replace: the storage namespace and display paths from step 0.3, the account identifier, and the operator name. Keep everything else. Model: the strongest available; these runs decide trades. Attach the Robinhood, storage and GitHub connectors to each task.
 
 ## 3. First run, by hand
 Before the schedule fires, start the daily task yourself on a weekday morning (or run its prompt in a chat with the same connectors) and watch it:
 - It must read your account with `get_portfolio` and quote V, HWM and F correctly for your start value.
-- When the session asks for tool permissions, choose "Always allow" for the Robinhood order tools (place and cancel), the storage connector and the scheduling tool. Without this the run stalls on the permission check at the exact moment it needs to place a stop (SYSTEM.md §9 item 4, `ops/OPERATING-NOTES.md`). If a rule-compliant order is still blocked later, the skill's order-block rule says what the run does and reminds you of this setting.
+- When the session asks for tool permissions, choose "Always allow" for the Robinhood order tools (place and cancel), the storage connector, the GitHub connector and the scheduling tool. Without this the run stalls on the permission check at the exact moment it needs to place a stop (SYSTEM.md §9 item 4, `ops/OPERATING-NOTES.md`). If a rule-compliant order is still blocked later, the skill's order-block rule says what the run does and reminds you of this setting.
 - It must create a new dated state file and a status file in your folders, and schedule the midday wake-up quoting a trigger id. Check the files exist and that the state file names your account correctly.
 Expect it to sit in cash unless a setup qualifies; cash is the position when nothing qualifies. Then let the schedule take over.
 
@@ -41,18 +41,18 @@ Expect it to sit in cash unless a setup qualifies; cash is the position when not
 Read every report. The first scout will find no closed trades and backfill nothing; that is correct. If a report ever implies the goal is near, that is a reporting failure and the skill's honesty rule has been dropped somewhere. If the daily chain misses a wake-up, `ops/OPERATING-NOTES.md` has the send_later notes (absolute UTC times, never a computed delay).
 
 ## 5. Data and learnings
-Running the system means publishing its results to the community: every run's status row and every closed trade, with amounts, under your handle in `data/<handle>/` (Ken, 2026-11-24). The repo is public. If you are not willing to publish your results, do not install this system. Nothing to set up for it: once the skill carries the repo-record step your close report writes the rows to a `repo-records/` folder next to your state files and `scripts/publish_data.py publish --pr` pushes them here (`CONTRIBUTING.md`, "Your data"). Likewise, once the skill carries the learning loop, your Sunday scout prints a `LEARNING PROPOSAL (for the shared repo)` block whenever your trades show a pattern that clears the threshold. `CONTRIBUTING.md` says how to push it back here in two minutes, and what the review checks. Accepted learnings reach you as the next skill-update prompt; whether to apply them to your copy is your call.
+Running the system means publishing its results to the community: every run's status row and every closed trade, with amounts, under your handle in `data/<handle>/` (Ken, 2026-11-24). The repo is public. If you are not willing to publish your results, do not install this system. Nothing to set up for it: once the skill carries the repo-record and publishing steps, your close report writes the rows to a `repo-records/` folder next to your state files and, each Friday and Sunday, pushes the week to your fork and opens the pull request through the GitHub connector (`CONTRIBUTING.md`, "With the GitHub connector"). People who prefer a terminal can use `scripts/publish_data.py publish --pr` instead. Likewise, once the skill carries the learning loop, your Sunday scout prints a `LEARNING PROPOSAL (for the shared repo)` block whenever your trades show a pattern that clears the threshold. `CONTRIBUTING.md` says how to push it back here in two minutes, and what the review checks. Accepted learnings reach you as the next skill-update prompt; whether to apply them to your copy is your call.
 
 ## Checklist
 - [ ] Agentic cash account open, funded, deposit settled; options level set only if long calls will be used
 - [ ] Robinhood connector added; account identifier copied from `get_accounts`
 - [ ] Storage connector added; state and status folders created; namespace and display paths noted
-- [ ] Plan has scheduled tasks with connectors
-- [ ] Skill created with `<ACCOUNT>`, start date, start value and goal replaced
+- [ ] Plan has scheduled tasks with connectors (Robinhood, storage, GitHub)
+- [ ] Skill created with `<ACCOUNT>`, operator handle, start date, start value and goal replaced
 - [ ] Rulebook read; skill-update prompt applied or rules edited in
 - [ ] Two tasks created with paths, account and operator name replaced; connectors attached; strongest model
 - [ ] First run watched: V, HWM, F correct; "Always allow" granted on order, storage and scheduling tools; state and status files written; next wake-up scheduled
-- [ ] Willing to publish your runs and trades under your handle; `git` and `gh` set up to push them
+- [ ] Willing to publish your runs and trades under your handle; GitHub account made, GitHub connector added, repo forked
 
 ## What stays with the original operator
 `scripts/sync_from_dropbox.py`, the `history/` generated files and the status block in `README.md` read Ken's Dropbox and describe his account. They are not needed to run the system. If you keep your own fork current from your own store, write your own sync for your paths and keep your figures out of commits the same way (`.gitignore`, redaction).

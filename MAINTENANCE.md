@@ -33,7 +33,7 @@ Anyone with this Mac's Dropbox can update it: Claude Code opened at this folder,
    ```bash
    python3 scripts/publish_data.py publish --handle ken-hq --source "<Dropbox>/AI Agents/Claude/Storage/Ken HQ/Double Project/repo-records"
    ```
-   then review any open `Data:` pull request from another operator (no account identifiers, headers match `data/README.md`) and merge it; the scoreboard regenerates on each publish.
+   then review any open `Data:` pull request from another operator (no account identifiers, headers match `data/README.md`; connector-published pull requests may also carry `learnings/proposed/` files, reviewed as in step 8) and merge it, then run `python3 scripts/publish_data.py scoreboard` so `data/SCOREBOARD.md` includes the merged rows. Files sent by an operator without GitHub ("Without GitHub" in `CONTRIBUTING.md`) are published with the same two scripts under that operator's handle.
 10. Commit with explicit paths, never `git add -A`. The git folder is in Dropbox: commit from one Mac at a time and push after each commit if a remote exists.
    ```bash
    git add README.md CHANGELOG.md rules/RULEBOOK.md history/

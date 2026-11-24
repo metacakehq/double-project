@@ -15,7 +15,7 @@ Maintainer: Ken Ott (`metacakehq`). The maintainer accepts, declines or trials l
 ## The automatic part
 Once the skill in `skill/double-project-trading/SKILL.md` is installed per `INSTALL.md`, your Sunday scout already does the work. When its pattern read (rules/LEARNING-LOOP.md §2) finds something that clears the proposal threshold (§3), it prints a `LEARNING PROPOSAL (for the shared repo)` block at the end of its report, in the portable form of §6: counts, percent of V and ATR multiples, no account identifiers, no dollar figures. If it finds a pattern that does not yet clear the threshold, it prints the same block marked `status at source: idea`.
 
-## The part you do (two minutes)
+## The part you do (two minutes, terminal path; connector users skip this, the run files it)
 1. Copy the block from the scout's report into a file, or straight to stdin.
 2. From a clone of this repo on the main branch:
    ```bash
@@ -27,12 +27,18 @@ Once the skill in `skill/double-project-trading/SKILL.md` is installed per `INST
 
 Your handle goes into the file as `author`. Use your GitHub login or any stable name; it is how repeat lessons from the same account are told apart from the same lesson seen by many accounts, which is the signal this folder exists to find.
 
-## Your data
-Running this system means publishing its results (Ken, 2026-11-24). Once the skill carries the repo-record step, your close report writes dated CSV files to a `repo-records/` folder next to your state files. Weekly, or whenever:
+## With the GitHub connector (no terminal, the default)
+Most operators never touch git. With a GitHub account, the GitHub connector added in claude.ai and the repo forked once (`INSTALL.md` step 0.5), the runs publish on their own: each Friday close report and each Sunday scout appends the week's status and trade rows to `data/<handle>/` on a branch of your fork, files any learning proposals under `learnings/proposed/`, and opens one pull request to this repo. You will see it listed under Pull requests on github.com; nothing is asked of you. The maintainer reviews and merges. If a run reports that it could not publish (connector missing, fork missing), it says why in its report and the rows wait in `repo-records/` until the next publish.
+
+## Your data (terminal path)
+Running this system means publishing its results (Ken, 2026-11-24). The connector path above is the default. If you prefer a terminal: once the skill carries the repo-record step, your close report writes dated CSV files to a `repo-records/` folder next to your state files. Weekly, or whenever:
 ```bash
 python3 scripts/publish_data.py publish --handle <your handle> --source <path to repo-records> --pr
 ```
-merges them into `data/<handle>/status.csv` and `trades.csv`, rebuilds `data/SCOREBOARD.md` and opens the pull request. The merge is idempotent. Schema and rules: `data/README.md`. If your claude.ai has the GitHub connector, the close report can commit the rows to your fork directly; the merge and pull request are the same.
+merges them into `data/<handle>/status.csv` and `trades.csv`, rebuilds `data/SCOREBOARD.md` and opens the pull request. The merge is idempotent. Schema and rules: `data/README.md`.
+
+## Without GitHub (fallback)
+If you will not have a GitHub account, publishing is still part of running the system; it just goes through the maintainer. Each week, send the new files from your `repo-records/` folder (and any LEARNING PROPOSAL blocks your scout printed) to the maintainer by the contact on the `metacakehq` GitHub profile, with your chosen handle in the message. The maintainer runs `scripts/publish_data.py publish --handle <your handle>` and `scripts/learnings.py propose` on your behalf and credits your handle. Ask before you install this way; it puts recurring work on one person and the maintainer may say no.
 
 ## What the review checks
 - Threshold: 4 or more trades (3 for bear funds), or honestly marked `idea`.
