@@ -1,0 +1,11 @@
+.DS_Store
+__pycache__/
+*.pyc
+.env
+.env.*
+# scratch pulled from Dropbox during a sync; the generated history files are committed
+scripts/_cache/
+# trade figures stay on this Mac only (Ken, 2026-11-24): generated or kept locally, never committed
+history/TRADE-LEDGER.md
+history/RUN-LOG.md
+history/OPEN-ITEMS.generated.md

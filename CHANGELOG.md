@@ -1,0 +1,7 @@
+# Changelog
+
+## 2026-11-24
+First codification. Sources: the live skill as synced to this Mac (30,648 bytes, modified 2026-11-20); Dropbox `Claude/ROLE-double-project-daily-run-2026-10-22.md` and `...weekly-scout-2026-10-22.md`; the 47 state files from 2026-10-06 to 2026-11-23 in `Claude/Storage/Ken HQ/Double Project/`; the 46 status files in `Claude/Log/`; `Claude/Storage/double-project-state.md` (2026-10-06, the last single-file state); `Claude/Storage/double-project-probe.txt` (2026-09-07); the Master Project Handoff (2026-09-05) and Cowork Supplement (2026-09-06); `_Context/ken-hq.md`, `runs.md`, `owners.md`, `tools.md`. Written: README, CLAUDE.md, SYSTEM, MAINTENANCE, rules/RULEBOOK, ops/RUN-ORDER, ops/OPERATING-NOTES, history/DECISIONS, TRADE-LEDGER, TIMELINE, OPEN-ITEMS, analysis/ASSESSMENT-2026-11-24, scripts/sync_from_dropbox.py. Generated: history/RUN-LOG, STATUS-LOG, OPEN-ITEMS.generated.
+
+## 2026-11-24 (second pass, Ken's review)
+Trade-figure files (`history/TRADE-LEDGER.md`, `history/RUN-LOG.md`, `history/OPEN-ITEMS.generated.md`) gitignored and kept local only; the root commit was rewritten before any push so they never entered history. Added `rules/LEARNING-LOOP.md` (trade reviews, weekly pattern read, proposal rule, scoreboard, backfill) and a pointer in the rulebook. Added `runs/SKILL-UPDATE-PROMPT-2026-11-24.md`, the prompt that brings the skill level with the state file, fixes the scheduling section, adds the permission-block rule and the learning loop. Permission-block policy written into SYSTEM.md and the operating notes.
