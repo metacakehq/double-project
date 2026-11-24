@@ -12,7 +12,7 @@ The Double Project is Ken Ott's experiment in letting an AI run a small brokerag
 
 This repo is the system, written down so it can be read, shared, audited and updated. It is not the live state. Live state (positions, balances, watchlist) lives in Dropbox and is marked sensitive there; this repo carries the rules, the architecture, the decision history, the operating lessons and an assessment.
 
-GitHub: `metacakehq/double-project` (private). The git folder is in Dropbox, so commit from one Mac at a time and push after every commit.
+GitHub: `metacakehq/double-project` (public since 2026-11-24, Ken: "make this public for now"). The git folder is in Dropbox, so commit from one Mac at a time and push after every commit.
 
 ## Status at the last sync (2026-11-24)
 - Running since 2026-07-24. 17 closed trades, 11 wins and 6 losses, cumulative realized +$190.77 (+19.1% of the start). Account in cash on 2026-11-23 at $1,194.87. Regime DEFENSE.
@@ -45,7 +45,7 @@ GitHub: `metacakehq/double-project` (private). The git folder is in Dropbox, so 
 | `CHANGELOG.md` | What changed in this repo and when |
 
 ## For other operators
-The system is installable on another account: `INSTALL.md`. Every installed copy's Sunday scout prints learning proposals in a portable form, and the operator pushes them here with one command (`CONTRIBUTING.md`). Accepted learnings go into the rulebook tagged `[community]` and come back to every operator as the next skill-update prompt. The repo recommends rules; it never writes into anyone's account. This repo is private; Ken decides who gets access.
+The system is installable on another account: `INSTALL.md`. Every installed copy's Sunday scout prints learning proposals in a portable form, and the operator pushes them here with one command (`CONTRIBUTING.md`). Accepted learnings go into the rulebook tagged `[community]` and come back to every operator as the next skill-update prompt. The repo recommends rules; it never writes into anyone's account. This repo is public; anyone with the link can read it and fork it. Write access and merges stay with the maintainer.
 
 ## Where the live pieces are
 All paths are inside Dropbox `Ken Ott/Metacake - Ken Ott/AI Agents/`.
