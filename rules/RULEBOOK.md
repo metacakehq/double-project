@@ -115,6 +115,8 @@ Make the call, record the reasoning in the state file, report it to Ken in that 
 ## 12b. Learning loop [proposed 2026-11-24, Ken asked; adopted into the skill via the update prompt]
 Every closed trade gets a fixed TRADE REVIEW record at the close report (setup, regime, stop distance, exit type, max favorable and adverse excursion, lesson). The Sunday scout reads all reviews and reports counts by exit type, setup, stop distance, kept excursion and regime, keeps a scoreboard, and turns a pattern into a proposal only with 4 or more trades, a named mechanism and a specific change. Full text in `rules/LEARNING-LOOP.md`.
 
+Shared learnings [Ken, 2026-11-24]: every operator's scout prints its proposals in a portable block; operators push them to `learnings/proposed/` by pull request; accepted ones enter this rulebook with a `[community]` tag and the learning id and author, and reach every operator as the next skill-update prompt. Three learnings from this account seed the folder: `2026-11-10-ken-hq-initial-stop-minimum` (accepted, §8 initial stop), `2026-11-23-ken-hq-bear-reversal-bar-deferral` (accepted, test 4b), `2026-11-22-ken-hq-stretch-entry-trial` (trial, test 3b). Flow and review checklist: `CONTRIBUTING.md`.
+
 ## 13. Reporting [skill, prompt]
 Brief. One line per position (entry, current, stop). V against $1,000 and against F. What was done and why. Quiet days two or three lines. Trades, rule triggers and live flags always reported. No em dashes, no preamble, no escalating language. State negatives plainly and name the positives. Never imply the target is near; state the gap.
 

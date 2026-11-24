@@ -42,5 +42,24 @@ A pattern becomes a PROPOSAL only when: it rests on 4 or more trades (3 for bear
 ## 4. Scoreboard the scout keeps
 A short table in the state file, refreshed every Sunday: trades, wins, losses, win rate, average win, average loss, payoff ratio, shake-out rate, kept-excursion ratio, trades per week, realized pace per week against the pace the goal needs. The honesty note about the objective cites this table.
 
-## 5. Backfill
+## 5. Shared learnings: the block the scout prints for the repo (Ken, 2026-11-24)
+Every installed copy of this system contributes. When section 2 finds a pattern that clears the section 3 threshold, the scout prints, at the end of its report, one block per pattern in this portable form. It also prints one for a pattern that does not yet clear the threshold, marked `idea`, so evidence can pool across operators. The operator pushes it to the repo with `scripts/learnings.py propose` (see `CONTRIBUTING.md`); nothing is sent anywhere by the run itself.
+```
+LEARNING PROPOSAL (for the shared repo)
+  title: <one line>
+  area: entry | exit | sizing | regime | flags | scheduling | tooling | reporting
+  direction: tightening | loosening | neutral
+  rule touched: <skill section and rule, or "new">
+  pattern: <what the TRADE REVIEW data shows, counts not impressions>
+  evidence: trades <n> (wins <w>, losses <l>) over <date range>; <the counts behind it>
+  mechanism: <which rule produced the outcome and why>
+  proposed change: <the specific number, threshold or step>
+  expected cost: <what it gives up>
+  how to judge: <TRADE REVIEW field and threshold>
+  review by: <date>
+  status at source: adopted as practice | proposed to operator | idea
+```
+Portable means: percent of V and ATR multiples, never dollars; no account identifiers; tickers and dates allowed. The block carries no more than the state file's own TRADE REVIEW blocks already contain in ratio form. Accepted learnings come back to every operator as the next skill-update prompt, tagged `[community]` in the rulebook with the learning's id and author.
+
+## 6. Backfill
 The first scout after this is adopted writes TRADE REVIEW blocks for the 17 closed trades to date from the state files' run logs (excursions from historicals), so the pattern read starts with a sample instead of waiting months.

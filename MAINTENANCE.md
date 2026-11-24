@@ -28,12 +28,13 @@ Anyone with this Mac's Dropbox can update it: Claude Code opened at this folder,
 5. Update the status block at the top of `README.md` (date, trade count, realized, last V, regime) from the latest state file.
 6. If the architecture changed (new task, new connector, new file rule), update `SYSTEM.md` and `ops/RUN-ORDER.md`.
 7. Append a `CHANGELOG.md` entry: date, what changed, which Dropbox files it came from.
-8. Commit with explicit paths, never `git add -A`. The git folder is in Dropbox: commit from one Mac at a time and push after each commit if a remote exists.
+8. Learnings (`CONTRIBUTING.md`): review any open pull request under `learnings/proposed/`. Decide with `python3 scripts/learnings.py review <id> --accept|--decline|--trial --note "..."`, merge, then fold an accepted learning into `rules/RULEBOOK.md` with a `[community]` tag and the learning id, and add it to the current `runs/SKILL-UPDATE-PROMPT-<date>.md`. Name it in `CHANGELOG.md` with its author. When a Sunday scout of this account printed a LEARNING PROPOSAL block, file it the same way (`propose`, author `ken-hq`).
+9. Commit with explicit paths, never `git add -A`. The git folder is in Dropbox: commit from one Mac at a time and push after each commit if a remote exists.
    ```bash
    git add README.md CHANGELOG.md rules/RULEBOOK.md history/
    git commit -m "Sync YYYY-MM-DD: <what changed>"
    ```
-9. Shared-memory close: write a `Claude/Log/` file for the session, and if Ken decided something, a Decisions Log row in Notion.
+10. Shared-memory close: write a `Claude/Log/` file for the session, and if Ken decided something, a Decisions Log row in Notion.
 
 ## What not to do
 - Do not write to the Dropbox state or status folders from here.
